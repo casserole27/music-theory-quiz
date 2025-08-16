@@ -6,16 +6,14 @@ import Results from './components/Results.vue';
 const score = ref(0);
 const isQuizComplete = ref(false);
 
-//add to quiz component for emits: 
-// @updateScore="score += $event"
-// @quizComplete="isQuizComplete = true"
-
 </script>
 
 <template>
   <Quiz 
     v-if="!isQuizComplete" 
     :score="score"
+    @updateScore="score += $event"
+    @quizComplete="isQuizComplete=true"
   />
   <Results 
     v-else 
