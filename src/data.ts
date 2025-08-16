@@ -1,3 +1,12 @@
+interface QuestionData {
+  id: number;
+  category: string;
+  question: string;
+  options: string[];
+  correct: string;
+  explanation: string;
+}
+
 const quizData = [
   {
     id: 1,
@@ -121,4 +130,4 @@ const quizData = [
   }
 ];
 
-export default quizData;
+export default quizData as QuestionData[];
