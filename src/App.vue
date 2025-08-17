@@ -29,13 +29,19 @@ const wrongAnswers = ref(0);
 
 <style scoped>
   .container {
-    /*TODO responsive*/
-    width: 800px;
-    height: 800px;
+    max-width: 800px;
+    height: 850px;
     background-color: white;
     margin-top: 2rem;
     padding: 2rem;
     border: 1rem solid #F38C68;
     border-radius: 1rem;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .container { 
+      margin-top: 0;
+      padding: 1rem; 
+    }
   }
 </style>

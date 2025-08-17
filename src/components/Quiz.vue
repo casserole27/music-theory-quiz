@@ -56,7 +56,7 @@ const nextQuestion = () => {
 
 <template>
     <p>{{ currentQuestion.question }}</p>
-    <div v-for="option in currentQuestion.options" :key="option">
+    <div v-for="option in currentQuestion.options" :key="option" class="fade-in">
       <button 
         @click="selectAnswer(option)"
         :disabled="showExplanation"
@@ -72,7 +72,7 @@ const nextQuestion = () => {
 
     <p>Score: {{ props.score }}</p>
     <p v-if="showCorrectAnswer"> {{ 'Correct! 🎉 🎶' }}</p>
-    <p v-if="showExplanation" class="explanation">{{ currentQuestion.explanation }}</p>   
+    <p v-if="showExplanation" class="explanation fade-in">{{ currentQuestion.explanation }}</p>   
     
     <button 
       v-if="showExplanation" 
@@ -84,60 +84,74 @@ const nextQuestion = () => {
 </template>
 
 <style scoped>
-.container {
-  /*TODO responsive*/
-  width: 800px;
-  height: 800px;
-  background-color: white;
-  margin-top: 2rem;
-  padding: 2rem;
-  border: 10px solid #F38C68;
-  border-radius: 1rem;
-}
 
-p {
-  width: 75%;
-  color: #323232;
-  font-size: 1.5rem;
-  text-align: center;
-  margin: 1rem auto;
-}
+  p {
+    width: 75%;
+    color: #323232;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 1rem auto;
+  }
 
-.explanation {
-  background-color: lightgoldenrodyellow;
-  border-radius: 1rem;
-  padding: 1rem;
-}
+  .explanation {
+    background-color: lightgoldenrodyellow;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+  }
 
-button {
-  cursor: pointer;
-  display: block;
-  width: 75%;
-  height: 4rem;
-  font-size: 1.5rem;
-  margin: .5rem auto;
-  border-radius: 1rem;
-  background-color: #6494BE;
-  border: none;
-}
+  button {
+    cursor: pointer;
+    display: block;
+    width: 75%;
+    height: 4rem;
+    font-size: 1.5rem;
+    margin: .5rem auto;
+    border-radius: 1rem;
+    background-color: #6494BE;
+    border: none;
+  }
 
-button:not(:disabled):hover {
-  background-color: #8eaec9;
-}
+  button:not(:disabled):hover {
+    background-color: #8eaec9;
+  }
 
-button:focus {
-  outline: 3px solid #2c7dc4;
-}
+  button:focus {
+    outline: 3px solid #2c7dc4;
+  }
 
-.next-button {
-  background-color: #F38C68;
-}
+  .next-button {
+    background-color: #F38C68;
+  }
 
-.next-button:not(:disabled):hover {
-  background-color: #fcb094;
-}
+  .next-button:not(:disabled):hover {
+    background-color: #fcb094;
+  }
 
-.selected { border: 5px solid #6494BE; }
-.correct { background: lightgreen; }
-.incorrect { background: lightcoral; }
+  .selected { border: 5px solid #6494BE; }
+  .correct { background: lightgreen; }
+  .incorrect { background: lightcoral; }
+
+  .fade-in {
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    p {
+      font-size: 1.25rem;
+    }
+    
+    button {
+      font-size: 1.25rem;
+    }
+}
 </style>

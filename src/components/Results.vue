@@ -13,7 +13,7 @@ const startQuizOver = () => emit('quizStartOver');
 </script>
 
 <template>
-  <div>
+  <div class="fade-in">
     <h1>Results</h1>
     <p>Correct Answers: {{ correctAnswers }}</p>
     <p>Final Score: {{ scorePercentage > 50 ? `${finalScore} 🎵🎉🎵🎉` : finalScore }}</p>
@@ -55,6 +55,19 @@ const startQuizOver = () => emit('quizStartOver');
 
   button:hover {
     background-color: #8eaec9;
+  }
+
+  .fade-in {
+  animation: fadeIn 1s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
 </style>
