@@ -38,6 +38,12 @@ const wrongAnswers = ref(0);
     border-radius: 1rem;
   }
 
+  @media screen and (min-width: 1001px) {
+    .container {
+      width: 1000px;
+    }
+  }
+
   @media screen and (max-width: 1000px) {
     .container { 
       margin-top: 0;
