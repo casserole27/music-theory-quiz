@@ -10,6 +10,7 @@ const props = defineProps<{
 //data emitted to parent
 const emit = defineEmits<{
   updateScore: [score: number]
+  updateIncorrect: [ wrongAnswers: number ]
   quizComplete: []
 }>()
 
@@ -35,6 +36,7 @@ const selectAnswer = (answer: string) => {
     emit('updateScore', 10)
   } else {
     wrongAnswers.value += 1;
+    emit('updateIncorrect', 1)
   }
 };
 
@@ -45,6 +47,7 @@ const nextQuestion = () => {
     selectedAnswer.value = '';
     showExplanation.value = false;
   } else {
+    currentQuestionIndex.value = 0;
     emit('quizComplete')
   }
 };
@@ -52,7 +55,6 @@ const nextQuestion = () => {
 </script>
 
 <template>
-  <div class="container">
     <p>{{ currentQuestion.question }}</p>
     <div v-for="option in currentQuestion.options" :key="option">
       <button 
@@ -77,9 +79,8 @@ const nextQuestion = () => {
       @click="nextQuestion" 
       class="next-button"
     >
-      {{ 'Next Question' }}
+      {{ currentQuestionIndex < quizData.length - 1 ? 'Next Question' : 'Show Results' }}
     </button>
-  </div>
 </template>
 
 <style scoped>
@@ -92,7 +93,6 @@ const nextQuestion = () => {
   padding: 2rem;
   border: 10px solid #F38C68;
   border-radius: 1rem;
-
 }
 
 p {
@@ -109,14 +109,6 @@ p {
   padding: 1rem;
 }
 
-.next-button {
-  background-color: #F38C68;
-}
-
-.next-button:hover {
-  background-color: #fcb094;
-}
-
 button {
   cursor: pointer;
   display: block;
@@ -129,12 +121,20 @@ button {
   border: none;
 }
 
-button:hover:not:disabled {
+button:not(:disabled):hover {
   background-color: #8eaec9;
 }
 
 button:focus {
   outline: 3px solid #2c7dc4;
+}
+
+.next-button {
+  background-color: #F38C68;
+}
+
+.next-button:not(:disabled):hover {
+  background-color: #fcb094;
 }
 
 .selected { border: 5px solid #6494BE; }
