@@ -14,10 +14,16 @@ const startQuizOver = () => emit('quizStartOver');
 
 <template>
   <div class="fade-in">
-    <h1>Results</h1>
-    <p>Correct Answers: {{ correctAnswers }}</p>
-    <p>Final Score: {{ scorePercentage > 50 ? `${finalScore} 🎵🎉🎵🎉` : finalScore }}</p>
-    <button @click="startQuizOver">Start over</button>
+    <header>
+      <h1>Results</h1>
+    </header>
+    <main>
+      <p>Correct Answers: {{ correctAnswers }}</p>
+      <p>Final Score: {{ scorePercentage > 50 ? `${finalScore} 🎵🎉🎵🎉` : finalScore }}</p>
+    </main>
+    <footer>
+      <button @click="startQuizOver">Start over</button>
+    </footer>
   </div>
 </template>
 
