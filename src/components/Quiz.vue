@@ -55,37 +55,42 @@ const nextQuestion = () => {
 </script>
 
 <template>
-    <p>{{ currentQuestion.question }}</p>
-    <div v-for="option in currentQuestion.options" :key="option" class="fade-in">
+    <header>
+      <h1>{{ currentQuestion.question }}</h1>
+    </header>
+    <main>
+      <div v-for="option in currentQuestion.options" :key="option" class="fade-in">
+        <button 
+          @click="selectAnswer(option)"
+          :disabled="showExplanation"
+          :class="{
+            'selected': selectedAnswer === option,
+            'correct': showExplanation && option === currentQuestion.correct,
+            'incorrect': showExplanation && selectedAnswer === option && option !== currentQuestion.correct
+          }"
+        >
+          {{ option }}
+        </button>
+      </div>
+    </main>
+    <footer>
+      <h2>Score: {{ props.score }}</h2>
+      <p v-if="showCorrectAnswer"> {{ 'Correct! 🎉 🎶' }}</p>
+      <h3 v-if="showExplanation" class="explanation fade-in">{{ currentQuestion.explanation }}</h3>   
+      
       <button 
-        @click="selectAnswer(option)"
-        :disabled="showExplanation"
-        :class="{
-          'selected': selectedAnswer === option,
-          'correct': showExplanation && option === currentQuestion.correct,
-          'incorrect': showExplanation && selectedAnswer === option && option !== currentQuestion.correct
-        }"
+        v-if="showExplanation" 
+        @click="nextQuestion" 
+        class="next-button"
       >
-        {{ option }}
+        {{ currentQuestionIndex < quizData.length - 1 ? 'Next Question' : 'Show Results' }}
       </button>
-    </div>
-
-    <p>Score: {{ props.score }}</p>
-    <p v-if="showCorrectAnswer"> {{ 'Correct! 🎉 🎶' }}</p>
-    <p v-if="showExplanation" class="explanation fade-in">{{ currentQuestion.explanation }}</p>   
-    
-    <button 
-      v-if="showExplanation" 
-      @click="nextQuestion" 
-      class="next-button"
-    >
-      {{ currentQuestionIndex < quizData.length - 1 ? 'Next Question' : 'Show Results' }}
-    </button>
+    </footer>
 </template>
 
 <style scoped>
 
-  p {
+  h1, h2, h3, p {
     width: 75%;
     color: #323232;
     font-size: 1.5rem;
