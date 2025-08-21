@@ -102,7 +102,7 @@ Project locations:
 - setup Vue / TypeScript using Vite 
 - Project work using Github issues as "tickets"
 - Publish live URL
-- Check markup and accessibility
+- Check accessibility
   -(https://wave.webaim.org/)
 - README file
 
@@ -115,7 +115,7 @@ Project locations:
 - accessibility
 
 ### What I learned
-I worked with React for two years in production, but I'm playing around with the Vue.js tutorial in their docs. I'm also using Claude to ask questions and compare it to React to solidify my understanding.
+I worked with React for two years in production, but I'm playing around with the Vue.js tutorial in their docs as well as building this app. I'm also using Claude to ask questions and compare it to React to solidify my understanding.
 
 There are things I like a lot so far that seem a little more intuitive than React. Perhaps direct mutations could become tricky in large scale production, but I like that there are no state setter functions. Props seem straightforward as well, and I really like emits, it makes a lot of sense to transmit data back up to a parent.
  
@@ -124,6 +124,7 @@ I also really like the way Vue automatically tracks dependencies using computed(
 ### Continued development
 
 - continued Unit testing
+- convert to full-stack with PHP / Laravel
 
 ### Useful resources
 
